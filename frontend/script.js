@@ -20,9 +20,9 @@ const getData = async () => {
         }
 
         data.forEach(item => {
-            const title = document.createElement('p')
-            title.textContent = item.title ?? 'Untitled item'
-            content.appendChild(title)
+            const language = document.createElement('p')
+            language.textContent = language.title ?? 'Untitled item'
+            content.appendChild(language)
         })
     } catch (error) {
         content.textContent = '❌ Unable to load data. Check the database configuration and server logs.'
