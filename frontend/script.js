@@ -21,7 +21,7 @@ const getData = async () => {
 
         data.forEach(item => {
             const language = document.createElement('p')
-            language.textContent = language.title ?? 'Untitled item'
+            language.textContent = items.language ?? 'Untitled item'
             content.appendChild(language)
         })
     } catch (error) {
