@@ -1,36 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-  <meta
-    http-equiv="X-UA-Compatible"
-    content="ie=edge"
-  >
-  <title>API Endpoints for Publishing and Searching</title>
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume builder demo</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
 </head>
-
 <body>
-  <main>
-    <h1 id="api-endpoints-for-publishing-and-searching">API Endpoints for Publishing and Searching</h1>
-
-
-    <div id="content" role="status">Loading data…</div>
+  <main class="layout">
+    <section class="panel" aria-labelledby="form-heading">
+      <p class="eyebrow">Create &amp; read demo</p>
+      <h1 id="form-heading">Build a resume</h1>
+      <p>Add a fictional work experience. Entries are public and shared with everyone using this demo.</p>
+      <form id="resume-form" novalidate>
+        <div class="field">
+          <label for="job-title">Job title</label>
+          <input id="job-title" name="job_title" type="text" required maxlength="100" aria-describedby="job-title-error">
+          <span class="error" id="job-title-error"></span>
+        </div>
+        <div class="field">
+          <label for="employer">Employer</label>
+          <input id="employer" name="employer" type="text" required maxlength="100" aria-describedby="employer-error">
+          <span class="error" id="employer-error"></span>
+        </div>
+        <div class="years">
+          <div class="field">
+            <label for="start-year">Start year</label>
+            <input id="start-year" name="start_year" type="number" required min="1900" max="2100" step="1" placeholder="2020" aria-describedby="start-year-error">
+            <span class="error" id="start-year-error"></span>
+          </div>
+          <div class="field">
+            <label for="end-year">End year <span class="optional">(optional)</span></label>
+            <input id="end-year" name="end_year" type="number" min="1900" max="2100" step="1" placeholder="Present" aria-describedby="end-year-error">
+            <span class="error" id="end-year-error"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="accomplishment">Accomplishment</label>
+          <textarea id="accomplishment" name="accomplishment" rows="4" required maxlength="1000" aria-describedby="accomplishment-error"></textarea>
+          <span class="error" id="accomplishment-error"></span>
+        </div>
+        <button type="submit">Add experience</button>
+        <p id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <section class="resume" aria-labelledby="resume-heading">
+      <header class="resume-header">
+        <p class="eyebrow">A shared example</p>
+        <h2 id="resume-heading">Your Name</h2>
+        <p>Professional experience</p>
+      </header>
+      <div id="resume-status" role="status" aria-live="polite">Loading experiences…</div>
+      <div id="resume-items"></div>
+      <footer class="resume-footer">Built with fictional data for a learning demo.</footer>
+    </section>
   </main>
-  <footer>
-    <h2>Endpoints</h2>
-    <a href="/api/items">/items</a>
-    <a href="/api/search?terms=Sindhi">/search?terms=hi</a>
-  </footer>
-  <script src="script.js"></script>
-</body>
 
+
+  <!-- Start of our code -->
+  <main>
+    <main class="container">
+            <section class="intro">
+                <p class="topper">The day starts with you</p>
+                <h1 style="font-family: &quot;Sora&quot;, sans-serif">Color your thoughts</h1>
+                <p class="subtitle">How do you feel?</p>
+            </section>
+
+            <section class="selection-section">
+                <div class="section-heading">
+                    <h2>What does your heart say? What about your mind?</h2>
+                </div>
+
+                <p style="font-family: &quot;Sora&quot;, sans-serif" class="helper-text">Sometimes we surprise ourselves everyday...</p>
+                
+<form id="postits-form" novalidate>
+
+                <div class="notes-grid" id="notes-grid">
+                    <button
+                        style="background-color: #f75151;"
+                        class="note note-1"
+                        data-color="#F29B91"
+                        aria-label="Select red"
+                        aria-pressed="false">
+                      
+                    </button>
+
+                    <button
+                        style="background-color: #ffa154;"
+                        class="note note-2"
+                        data-color="#ffa154"
+                        aria-label="Select orange"
+                        aria-pressed="false">
+                      
+                    </button>
+
+                    <button
+                        style="background-color: #ffeb8b;"
+                        class="note note-3"
+                        data-color="#ffeb8b"
+                        aria-label="Select yellow"
+                        aria-pressed="false">
+                      
+                    </button>
+
+                    <button
+                        style="background-color: #9adca0;"
+                        class="note note-4"
+                        data-color="#9adca0"
+                        aria-label="Select green"
+                        aria-pressed="false">
+                      
+                    </button>
+
+                    <button
+                        style="background-color: #585eb2;"
+                        class="note note-5"
+                        data-color="#585eb2"
+                        aria-label="Select blue"
+                        aria-pressed="false">
+                      
+                    </button>
+
+                    <button
+                        style="background-color: #b072c7;"
+                        class="note note-6"
+                        data-color="#b072c7"
+                        aria-label="Select purple"
+                        aria-pressed="false">
+                      
+                    </button>
+
+                    <button
+                        style="background-color: #ffa2da;"
+                        class="note note-7"
+                        data-color="#ffa2da"
+                        aria-label="Select pink"
+                        aria-pressed="false">
+                      
+                    </button>
+
+                    <button
+                        style="background-color: #4c4848;"
+                        class="note note-8"
+                        data-color="#4c4848"
+                        aria-label="Select black"
+                        aria-pressed="false">
+                      
+                    </button>
+
+                    <button
+                        style="background-color: #e6e6e6;"
+                        class="note note-9"
+                        data-color="#e6e6e6"
+                        aria-label="Select white"
+                        aria-pressed="false">
+                    
+                    </button>
+                </div>
+
+                <p class="selection-hint" id="selection-hint">There's no need for labels here</p>
+            </section>
+
+            <section class="writing-section">
+                <div class="section-heading">
+                    <h2 style="font-family: &quot;Sora&quot;, sans-serif">In your 'write' mind</h2>
+                    <span style="font-family: &quot;Sora&quot;, sans-serif" class="optional"
+                        >Write your thoughts away</span
+                    >
+                </div>
+
+                <p class="helper-text"><br /></p>
+
+                <textarea id="feeling-note" placeholder="Today feels like..." maxlength="2000"></textarea>
+
+                <!-- CHEEKY FIELD -->
+                <div class="field">
+                  <label for="accomplishment">Accomplishment</label>
+                  <textarea id="accomplishment" name="accomplishment" placeholder="Today feels like..." maxlength="2000" aria-describedby="accomplishment-error"></textarea>
+                  <span class="error" id="accomplishment-error"></span>
+                </div>
+
+                <div class="text-footer">
+                    <span>Just for this moment.</span>
+                    <span id="character-count">0 / 2000</span>
+                </div>
+            </section>
+
+            <section class="save-section">
+                <button id="save-button" class="save-button">Let's have a thought</button>
+                <p id="status-message" role="status" aria-live="polite">Here comes a thought that might alarm you</p>
+
+                
+                  <button type="submit">Add experience</button>
+                  <p id="form-status" role="status" aria-live="polite"></p>
+                
+
+                  </form>
+
+
+
+
+
+            </section>
+
+            <section class="prev-section">
+                <div class="section-heading prev-heading">
+                    <div>
+                        <p class="eyebrow">Rewind, and unwind</p>
+                        <h2>Recall those moments</h2>
+                    </div>
+
+                    <button id="refresh-button" class="refresh-button">↻ Refresh</button>
+                </div>
+
+                <div id="prev-list" class="prev-list">
+                    <p class="empty-state">Do you remember these little things?</p>
+                </div>
+            </section>
+        </main>
+  </main>
+
+
+
+  <template id="resume-item-template">
+    <article class="experience">
+      <div class="experience-heading"><h3 class="job-title"></h3><p class="dates"></p></div>
+      <p class="employer"></p>
+      <p class="accomplishment"></p>
+    </article>
+  </template>
+</body>
 </html>
